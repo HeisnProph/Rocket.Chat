@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback } from 'react';
 import { Accordion, Field, Select, FieldGroup, ToggleSwitch, Tooltip } from '@rocket.chat/fuselage';
-import { css, toClassName } from '@rocket.chat/css-in-js';
+import { css } from '@rocket.chat/css-in-js';
 
 import { useTranslation } from '../../contexts/TranslationContext';
 import { useUserPreference } from '../../contexts/UserContext';
@@ -8,8 +8,6 @@ import { useForm } from '../../hooks/useForm';
 import { CustomSounds } from '../../../app/custom-sounds/client';
 
 const useCustomSoundsOptions = () => useMemo(() => CustomSounds && CustomSounds.getList && CustomSounds.getList().map(({ _id, name }) => [_id, name]), []);
-
-const sliderStyle = toClassName(css`flex-grow: 1;`);
 
 const PreferencesSoundSection = ({ onChange, ...props }) => {
 	const t = useTranslation();
@@ -67,7 +65,7 @@ const PreferencesSoundSection = ({ onChange, ...props }) => {
 					{t('Notifications_Sound_Volume')}
 				</Field.Label>
 				<Field.Row >
-					<input className={[sliderStyle]} type='range' value={notificationsSoundVolume} onChange={onChangeNotificationsSoundVolume} min='0' max='100'/>
+					<input className={css`flex-grow: 1;`} type='range' value={notificationsSoundVolume} onChange={onChangeNotificationsSoundVolume} min='0' max='100'/>
 					<Tooltip arrowPosition='left' mis='x8'>{notificationsSoundVolume}</Tooltip>
 				</Field.Row>
 			</Field>, [notificationsSoundVolume, onChangeNotificationsSoundVolume, t])}
